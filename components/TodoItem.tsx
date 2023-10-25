@@ -1,5 +1,5 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-import { Todo } from "./Todo";
+import { Todo } from "../Todo";
 
 type Props = {
   todo: Todo;
@@ -27,10 +27,7 @@ export default function TodoItem(props: Props) {
           onPress={() => props.onComplete(props.todo.id)}
           disabled={props.todo.completed}
         />
-        <Button
-          title="❌"
-          onPress={() => props.onDelete(props.todo.id)}
-        />
+        <Button title="❌" onPress={() => props.onDelete(props.todo.id)} />
       </View>
     </View>
   );

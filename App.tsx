@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AddButton from './AddButton';
-import { useEffect, useState } from 'react';
-import { Todo } from './Todo';
-import TodoList from './TodoList';
-import CreateTodoModal from './CreateTodoModal';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import AddButton from "./components/AddButton";
+import { useEffect, useState } from "react";
+import { Todo } from "./Todo";
+import TodoList from "./components/TodoList";
+import CreateTodoModal from "./components/CreateTodoModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
         setTodos(JSON.parse(todos));
       }
     });
-  }, [])
+  }, []);
 
   function openModal() {
     setModalVisible(true);
@@ -33,13 +33,17 @@ export default function App() {
   }
 
   function addTodo(title: string) {
-    const newTodo: Todo = { title, completed: false, id: Math.random().toString() };
+    const newTodo: Todo = {
+      title,
+      completed: false,
+      id: Math.random().toString(),
+    };
     modifyTodos([...todos, newTodo]);
     closeModal();
   }
 
-  function completeTodo(id: string)  {
-    const newTodos = todos.map(todo => {
+  function completeTodo(id: string) {
+    const newTodos = todos.map((todo) => {
       if (todo.id === id) {
         return { ...todo, completed: true };
       }
@@ -49,13 +53,13 @@ export default function App() {
     modifyTodos(newTodos);
   }
 
-  function deleteTodo (id: string) {
-    const newTodos = todos.filter(todo => todo.id !== id);
+  function deleteTodo(id: string) {
+    const newTodos = todos.filter((todo) => todo.id !== id);
     modifyTodos(newTodos);
   }
 
   function saveTodo(id: string, newTitle: string) {
-    const newTodos = todos.map(todo => {
+    const newTodos = todos.map((todo) => {
       if (todo.id === id) {
         return { ...todo, title: newTitle };
       }
@@ -71,8 +75,17 @@ export default function App() {
         <Text style={styles.title}>Todo List</Text>
         <AddButton onPress={openModal} />
       </View>
-      <TodoList todos={todos} onSave={saveTodo} onComplete={completeTodo} onDelete={deleteTodo} />
-      <CreateTodoModal visible={modalVisible} onClose={closeModal} onSave={addTodo} />
+      <TodoList
+        todos={todos}
+        onSave={saveTodo}
+        onComplete={completeTodo}
+        onDelete={deleteTodo}
+      />
+      <CreateTodoModal
+        visible={modalVisible}
+        onClose={closeModal}
+        onSave={addTodo}
+      />
 
       <StatusBar style="auto" />
     </View>

@@ -1,6 +1,6 @@
 import { FlatList, Text, View, StyleSheet } from "react-native";
 import TodoItem from "./TodoItem";
-import { Todo } from "./Todo";
+import { Todo } from "../Todo";
 
 type Props = {
   todos: Todo[];
@@ -28,9 +28,7 @@ export default function TodoList(props: Props) {
     }
 
     return 0;
-  })
-
-  
+  });
 
   return (
     <FlatList
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     marginVertical: 30,
   },
 });
