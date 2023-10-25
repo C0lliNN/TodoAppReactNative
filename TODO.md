@@ -2,7 +2,8 @@
 * [x] Handle on Complete
 * [x] Save to Local storage
 * [x] Handle Swipes
-* [ ] Test Multiple Items
+* [x] Test Multiple Items
+* [ ] Deploy to stores
 
 ## Optionals
-* [ ] Modify Icons
+* [x] Modify Icons
